@@ -1,51 +1,34 @@
 # fullstack-interview-test
 Interview test for fullstack Software Engineers
 
-## Welcome!
-If you're reading this, it means we're interested in working with you and solving amazing and difficult problems in real-estate tech in Mexico.
+## Hola!
+Comparto la información sobre como correr el proyecto, tanto frontend como backend.
+Lo que contiene cada carpeta dentro del proyecto es lo siguiente:
+-- GitProyect --> se refiere al ambiente virtual con los paquetes necesarios para el backend, este esta en python 3.7.
+-- Gitbackend --> es todo el backend del proyecto, dentro de este se encuantra el archivo requirements.txt con todas las paqueterias necesarias para correr el backend.
+-- Gitfrontend --> es todo el frontend en Angular CLI 7.0.6, Node js 13.5.0 y TypeScript 3.7.8
 
-This README provides the instructions to a small, self-contained test for a FullStack Software Engineer position.
+## Instalación
 
-## What we're looking for
-We're looking for a talented and driven full-stack engineer, comfortable with building responsive front end experiences, as well as with designing and building rigorous APIs and backend services. 
+Para correr el backend es necesario activar el ambiente virtual (en una terminal dentro del directorio GitProyect escribir el siguiente comando: source bin/activate) que adjunto aqui mismo o crear un ambiente viertual para python 3.7 e instalar las paqueterías que se encuentrar dentro del archivo requirements.txt con el comando pip install -r requirements.txt
 
-This means that this test is designed to gather signal on your coding structure, the tradeoffs and decisions you make on API design, and how you build a lightweight frontend app to show the data coming from your API. We're excited to see what you build!
+Para correr el frontend es necesario tener instaldo Node js, para que no haya conflicto de version recomiendo utilizar Node js 13.5.0 (pagina oficial de descarga: https://nodejs.org/en/download/), también es necesario instalar Angular cli con el siguiente comando dentro de una terminal: npm install @angular/cli, igual recomiendo para que no haya errores de versiones instalar la version de angular cli 7.0.6.
 
-## The test
-Today, we'll be building an API wrapper around the git information of this project. We suggest forking this repo and start working on it on your private fork, the url of which is the only thing you need to send us when you're done.
+## Iniciar proyecto
+Una vez instalado tanto paqueterias como programas.
+Dentro de una terminal y con el entorno virtual activado para correr el backend es necesario estar dentro del directorio Gitbakend y después escribir el siguiente comando: python manage.py runserver (es necesario que la url del backend este de la siguiente forma: http://127.0.0.1:8000/, no con localhost) para poder acceder a la base de datos se tiene que crear un superusuario, para la persona que desea ingresar al admin (http://127.0.0.1:8000/admin/) y no este registrado deberá darse de alta con el siguiente comando python manage.py createsuperuser donde se pedirá un nombre al usuario y contraseña para crear el usuario dentro de la base de datos.
 
-The main objects we'll be dealing with are:
-- Commits
-- Authors
-- Branches
-- PRs
+Dentro de una nueva terminal se debe estar dentro del directorio Gitfrontend y escribir el siguiente comando: ng serve -open, una vez el programa compile este abrira una ventana del navegador con el proyecto, el puerto que debe tener el frontend es el 4200 (http://127.0.0.1:4200/).
 
-We'd like to see a visual representation of the git history of this repo as a **JS web-app**, using the API previously described. To be specific, we'd like to see the following:
-- A view where we can see the existing branches
-- A branch detail view where we can see all the commits to one specific branch, with commit messages, authors and timestamps.
-- A commit detail view where we can see the commit message, timestamp, number of files changed and author names / emails.
-- A "PR" create view, where we can choose two branches (base and compare), and merge them together, just like Pull Requests work in Github. 
-- A "PR" list view, where we see all created PRs and the following info: Author, Title, Description and Status (`Open`, `Closed`, `Merged`). If the status is `Open`, there should be a button that allows us to mark it as `Closed`.
+Una vez ambos proyectos se encuentre "corriendo" se pueden comunicar el uno con el otro mediante las api correspondientes.
 
-For the **PR create view**, we'll ask the user for a PR title and description, and we'll give them 2 options: either save it (Status = `Open`), or merge it. Note that merge operations can fail due to conflicts or other reasons, so make sure you handle and show whatever error happens when merging. There's no need to do something about these errors other than show them in the frontend. After a successful merge, the PR should move to a `Merged` status.
+## Base de datos
+La base de datos la adjunto al correo donde se me hizo llegar esta prueba por si es necesaria, de lo contrario al correr el proyecto se debe crear una base de datos nueva.
+Dentro de la base de datos viene el token necesario para hacer los pull requests.
+Este token caduca a los 7 días.
+De ser necesario otro token este debe ser cargado en la base de datos dentro del modelo GitToken.
 
-## Deliverables
-We expect this test to take around 4 hours, but not significantly more (your time is very valuable!). We're giving you a week from the date you receive it to complete it and send us your repo URL, using **whatever stack you feel most comfortable with**. Due to this, we ask that you also provide a `README` with instructions for running your project, both back and frontend, along with setup instructions (or provide a Dockerfile and a `docker run` instruction).
 
-It's up to you to design how this should look code-wise, but we don't expect you to model all git objects in a DB. We're ok with reading them using a library wrapper for git like [GitPython](https://gitpython.readthedocs.io/en/stable/), on-demand. The only DB design required is the one for PRs.
-
-## Grading
-We'll grade this project according to completion percentage of the features requested, good coding style for both back and frontend. For us, good coding means:
-- It's readable. We read code much more often than we write it, so it's important that we're clear on what we're doing and comment any hairy parts (which we don't really expect to have in this test!).
-- It's reasonably well ordered and with a logically thought-out structure. We like to do separation of concerns, and deal with routing, DB models, serialization, etc in their own file structure / files. 
-- Clear, understandable variable names. No one wants to read the whole file to understand what the variable `c1_2` means.
-
-We also care about being able to run your test without significant effort on our part, so make sure you test the instructions you provide on your README.
-
-### Things we won't be grading
-- Design chops: we care that you know enough CSS not to be surprised when you need to work on it, but we're not picky about your solution's UX/UI.
-
-### Bonus points
-- Your code has tests.
-
-If you come across any questions or anything we didn't cover on this README, feel free to reach out to us and we'll get you an answer as soon as possible. Happy coding!
+## Despedida
+Agradezco tanto la oportunidad como el desafío. 
+Quedo atento a cualquier duda o comentario.

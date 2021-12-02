@@ -1,0 +1,24 @@
+<div class="data_table">
+  <div>
+    <button type="button" class="btn-light" (click)="util.goBack()">
+        <i class=""></i>{{'Back'}}
+    </button>
+  </div>
+
+  <div class="data_body" *ngIf="item && itemStructure">
+    <ng-container>
+      <ng-container *ngFor="let header of itemStructure.headers">
+        <label><b>{{ header.label }}</b></label>
+        <div class="field_value">
+          <ng-container *ngIf="header.type=='text'">
+            {{util.getValueByPath(item, header.path)}}
+          </ng-container>
+          <ng-container *ngIf="header.type=='datetime'">
+             {{util.isoDateToFormat(item[header.path])}}
+          </ng-container>
+        </div>
+      </ng-container>
+    </ng-container>
+  </div>
+</div>
+

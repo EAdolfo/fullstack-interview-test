@@ -1,0 +1,11 @@
+<div class="data_table">
+    <div>
+      <button type="button" class="btn-primary" routerLink="{{url+'/create'}}">
+        {{'Create Pull Request'}}
+      </button>
+    </div>
+</div>
+
+<ng-container>
+  <app-list [endpoint]="endpoint" [url]="url" [itemStructure]="itemStructure" [back]="false"></app-list>
+</ng-container>
