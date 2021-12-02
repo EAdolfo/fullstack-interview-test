@@ -1,0 +1,14 @@
+<div class="navigator">
+  <ul>
+    <li>
+      <a [ngClass]="{'active': router.url.split('/')[1]=='branches'}" routerLink="/branches">
+        <span><b>Branches</b></span>
+      </a>
+    </li>
+    <li>
+      <a [ngClass]="{'active': router.url.split('/')[1]=='pull-requests'}" routerLink="/pull-requests">
+        <span><b>Pull Requests</b></span>
+      </a>
+    </li>
+  </ul>
+</div>

@@ -1,0 +1,57 @@
+<div class="data_table">
+  <div *ngIf="back">
+    <button type="button" class="btn-light" (click)="util.goBack()">
+        <i class=""></i>{{'Back'}}
+    </button>
+  </div>
+
+  <ng-container *ngIf="!items">
+    Loading ...
+  </ng-container>
+
+  <ng-container *ngIf="items?.length > 0">
+    <table >
+      <thead>
+        <tr>
+          <th *ngFor="let header of itemStructure.headers">
+              {{ header.label }}
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of items">
+          <td *ngFor="let header of itemStructure.headers">
+            <ng-container *ngIf="itemStructure.actions && itemStructure.actions.length > 0">
+                <ng-container>
+                  <span>
+                    <ng-container *ngIf="header.type == 'text'">
+                      {{util.getValueByPath(item, header.path)}}
+                    </ng-container>
+                    <ng-container *ngIf="header.type == 'datetime'">
+                      {{util.isoDateToFormat(item[header.path])}}
+                    </ng-container>
+                  </span>
+                </ng-container>
+            </ng-container>
+          </td>
+          <td *ngIf="itemStructure.actions && itemStructure.actions.length > 0">
+            <ng-container *ngFor="let action of itemStructure.actions">
+              <ng-container *ngIf="!action.conditions || util.getValueByPath(item, action.conditions['path']) === action.conditions['value']">
+                <button class="btn-light" *ngIf="action.action == 'navigate'" routerLink="{{navigationURL(action.url, item, action.id_path)}}">
+                  <ng-container>
+                    {{action.label}}
+                  </ng-container>
+                </button>
+                <button class="btn-light" *ngIf="action.action == 'edit'" (click)="change(action, item)">
+                  <ng-container>
+                    {{action.label}}
+                  </ng-container>
+                </button>
+              </ng-container>
+            </ng-container>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </ng-container>
+</div>

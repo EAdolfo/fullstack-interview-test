@@ -15,14 +15,14 @@ class BranchesViewSet(viewsets.ViewSet):
 
     @action(detail=False, methods=['get'], url_path='list')
     def branch_commit_list(self, request):
-        heads = [head.name for head in repo.heads]
+        heads = [{'name': head.name} for head in repo.heads]
         return Response({
             'code': 200,
             'data': heads
         })
 
     @action(detail=False, methods=['get'], url_path='detail')
-    def commit_detail(self, request):
+    def commits_list(self, request):
         branch_commits = repo.iter_commits(request.query_params.get('branch_name'))
         commits = [{
             'commit_id': commit.hexsha,
@@ -41,7 +41,7 @@ class CommitViewSet(viewsets.ViewSet):
     authentication_classes = []
     permission_classes = (AllowAny,)
 
-    @action(detail=False, methods=['get'], url_path='commit-detail')
+    @action(detail=False, methods=['get'], url_path='detail')
     def commit_detail(self, request):
         commit_obj = repo.commit(request.query_params.get('commit_id'))
 
