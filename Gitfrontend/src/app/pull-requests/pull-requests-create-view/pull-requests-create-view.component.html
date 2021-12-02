@@ -1,0 +1,43 @@
+<div class="data_table">
+  <div>
+    <button type="button" class="btn-light" (click)="util.goBack()">
+        <i class=""></i>{{'Back'}}
+    </button>
+  </div>
+
+  <div class="form_body">
+    <form *ngIf="loaded" [formGroup]="formPR">
+      <ng-container>
+        <ng-container *ngFor="let field of structurePR.fields" class="form-group">
+          <label><b>{{ field.label }}</b></label>
+          <ng-container *ngIf="field.type == 'text'">
+            <input class="form-control" type="text" formControlName="{{field.path}}">
+          </ng-container>
+          <ng-container *ngIf="field.type == 'textarea'">
+            <textarea class="form-control" rows="4" formControlName="{{field.path}}"></textarea>
+          </ng-container>
+          <ng-container *ngIf="field.type == 'api-select'">
+            <select class="form-control" formControlName="{{field.path}}">
+              <option value=""></option>
+              <option *ngFor="let option of options[field.path]" value="{{option}}">{{option}}</option>
+            </select>
+          </ng-container>
+        </ng-container>
+      </ng-container>
+      <div class="form-group">
+          <div>
+              <div *ngFor="let message of messages" class="label-success">
+                  <span class="response-message">{{ message }}</span>
+              </div>
+              <div *ngFor="let error of errors" class="label-danger">
+                  <span class="response-error">{{ error }}</span>
+              </div>
+          </div>
+      </div>
+    </form>
+    <div class="form_footer">
+      <button type="button" class="btn-light" [disabled]="formPR.disabled" (click)="save(false)">{{ 'Save' }}</button>
+      <button type="button" class="btn-primary" [disabled]="formPR.disabled" (click)="save(true)">{{ 'Merge' }}</button>
+    </div>
+  </div>
+</div>
