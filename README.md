@@ -24,6 +24,7 @@ Una vez ambos proyectos se encuentre "corriendo" se pueden comunicar el uno con 
 
 ## Base de datos
 La base de datos la adjunto al correo donde se me hizo llegar esta prueba por si es necesaria, de lo contrario al correr el proyecto se debe crear una base de datos nueva.
+Esta debe estar dentro del directorio Gitbackend.
 Dentro de la base de datos viene el token necesario para hacer los pull requests.
 Este token caduca a los 7 días.
 De ser necesario otro token este debe ser cargado en la base de datos dentro del modelo GitToken.
